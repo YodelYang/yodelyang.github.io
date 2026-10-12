@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>王德阳</title>
+  <meta name="description" content="王德阳，北京交通大学人工智能专业硕士。可见光、红外与合成孔径雷达上的感知，以及模型微调和推理加速。">
+  <meta name="theme-color" content="#e7efec">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-band="rgb">
+  <a class="skip" href="#now" data-i18n="skip">跳到正文</a>
+  <div class="shell">
+    <aside class="rail">
+      <p class="eyebrow" data-i18n="eyebrow">北京交通大学 · 研二</p>
+      <h1 data-i18n="name">王德阳</h1>
+      <p class="role" data-i18n="role">人工智能专硕</p>
+
+      <div class="sensor" role="group" data-i18n-aria="sensorLabel" aria-label="三种传感器">
+        <button type="button" data-band-btn="rgb" aria-pressed="true" data-i18n="band.rgb">可见光</button>
+        <button type="button" data-band-btn="ir" aria-pressed="false" data-i18n="band.ir">红外</button>
+        <button type="button" data-band-btn="sar" aria-pressed="false" data-i18n="band.sar">雷达</button>
+      </div>
+      <p class="lede" data-band-panel="rgb" data-i18n="lede.rgb">可见光负责看清目标：交通灯、铁路沿线、白天的路口。它失效的时候，才轮到红外和雷达。</p>
+      <p class="lede" data-band-panel="ir" data-i18n="lede.ir" hidden>夜间和烟雾里，可见光先看不见。红外看的是温度差。现在的课题用它和可见光一起做跨模态感知。</p>
+      <p class="lede" data-band-panel="sar" data-i18n="lede.sar" hidden>合成孔径雷达不靠光照。它和可见光、红外是三路不同的测量，不是同一张图换个滤镜。</p>
+
+      <div class="lang" role="group" data-i18n-aria="langLabel" aria-label="语言">
+        <button type="button" data-lang="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+
+      <ul class="contact">
+        <li><a href="mailto:deyangwang@bjtu.edu.cn">deyangwang@bjtu.edu.cn</a></li>
+        <li><a href="https://github.com/YodelYang" rel="noopener">GitHub</a></li>
+        <li><a href="https://orcid.org/0009-0004-4159-4885" rel="noopener">ORCID</a></li>
+      </ul>
+
+      <nav class="toc" data-i18n-aria="tocLabel" aria-label="本页">
+        <a href="#now" data-i18n="nav.now">现在</a>
+        <a href="#experience" data-i18n="nav.experience">经历</a>
+        <a href="#projects" data-i18n="nav.projects">项目</a>
+        <a href="#paper" data-i18n="nav.paper">论文</a>
+        <a href="#education" data-i18n="nav.education">教育</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="now" class="block">
+        <h2 data-i18n="now.title">现在</h2>
+        <p data-i18n="now.body">2026 年秋，研二。课题是跨模态感知：可见光、红外，以及合成孔径雷达。基座用 Qwen3-VL，先做监督微调，再用 GRPO 后训练，奖励看定位 IoU 和类别是否正确。可见光–红外的指令数据来自 M3FD 和 KAIST，这两套数据本身没有雷达。</p>
+      </section>
+
+      <section id="experience" class="block">
+        <h2 data-i18n="exp.title">经历</h2>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="job1.org">新石器慧通科技股份有限公司</h3>
+            <time data-i18n="job1.date">2026.02 — 2026.07</time>
+          </div>
+          <p class="meta" data-i18n="job1.role">数据算法实习生 · Neolix</p>
+          <ul>
+            <li data-i18n="job1.b1">做交通信号灯检测数据的送筛、送标、预标、可视化和交付，场景包括公交车灯、交叉路口和掉头。</li>
+            <li data-i18n="job1.b2">重训 YOLO 检测模型，并用 ResNet 做昼夜、天气、车道等场景分类。</li>
+            <li data-i18n="job1.b3">挖掘公交车灯、闯红灯、悬空电线等样本。维护这套数据的 Docker 镜像和后处理脚本，接到数据平台。</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="job2.org">北京普测时空科技有限公司</h3>
+            <time data-i18n="job2.date">2025.04 — 2025.07</time>
+          </div>
+          <p class="meta" data-i18n="job2.role">大模型 Agent 开发实习生</p>
+          <ul>
+            <li data-i18n="job2.b1">在 Coze 上搭建就业指导、舆情分析和简历评分智能体，把意图识别、检索和生成串成工作流。</li>
+            <li data-i18n="job2.b2">用 Whisper 转写会议录音，再用 Qwen2-7B-Instruct 整理成总结和待办。</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="projects" class="block">
+        <h2 data-i18n="proj.title">项目</h2>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="p1.title">跨模态感知大模型</h3>
+            <time data-i18n="p1.date">2025.10 — 至今</time>
+          </div>
+          <p class="meta" data-i18n="p1.meta">科研</p>
+          <p data-i18n="p1.body">针对夜间和烟雾里可见光失效的情况，把可见光、红外和合成孔径雷达当作互补的测量。用 Qwen3-VL 做监督微调。M3FD 和 KAIST 提供的是可见光–红外指令数据。后训练用 GRPO，奖励包含定位 IoU 和类别是否正确。</p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="p2.title">Text-to-SQL 微调</h3>
+            <time data-i18n="p2.date">2025.09 — 2025.12</time>
+          </div>
+          <p class="meta" data-i18n="p2.meta">课程项目</p>
+          <p data-i18n="p2.body">清洗 Spider、BIRD、WikiSQL、DuSQL，用 ms-swift 和 DoRA 微调 Qwen3-4B-Instruct。BIRD 上的逻辑匹配率从 1.56% 到 16.32%。用 Streamlit 做了上传数据库、生成并执行 SQL 的演示。</p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="p3.title">铁路沿线安全态势感知</h3>
+            <time data-i18n="p3.date">2024.12 — 2025.06</time>
+          </div>
+          <p class="meta" data-i18n="p3.meta">本科毕业设计</p>
+          <p data-i18n="p3.body">复现 MVX-Net：VGG16 提取图像特征，VoxelNet 处理激光雷达点云，再对齐到体素。后端是 Django，网页端用 Three.js 看点云和检测框。</p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="p4.title">CPU 上的 CNN 批量推理加速</h3>
+            <time data-i18n="p4.date">2023.04 — 2024.05</time>
+          </div>
+          <p class="meta" data-i18n="p4.meta">北京市级大学生创新创业训练计划</p>
+          <p data-i18n="p4.body">参与 BDLO 的数据布局，以及把重排折进批归一化和池化。用 LibTorch 和 Eigen 做消融，最高加速 1.28 倍。我是论文的共同作者。</p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="p5.title">车载 cDSP 上的推理部署</h3>
+            <time data-i18n="p5.date">2023.02 — 2024.05</time>
+          </div>
+          <p class="meta" data-i18n="p5.meta">蔚来校企合作</p>
+          <p data-i18n="p5.body">用 MACE 把 HiFi-GAN 部署到骁龙芯片的 cDSP，做 int8 量化和算子融合。其中 Transformer 结构加速约 1.5 倍。</p>
+        </article>
+      </section>
+
+      <section id="paper" class="block">
+        <h2 data-i18n="paper.title">论文</h2>
+        <article class="entry paper">
+          <p class="paper-title">Batched data layout optimization for Im2col-based convolutions on CPUs</p>
+          <p class="authors">Zhao, H., Liu, X., Chen, R., Tang, C., He, Y., <strong>Wang, D.</strong>, Xie, J.</p>
+          <p class="meta"><em>The Journal of Supercomputing</em>, 81, 1219, 2025.</p>
+          <p class="links"><a href="https://doi.org/10.1007/s11227-025-07706-9" rel="noopener">doi.org/10.1007/s11227-025-07706-9</a></p>
+          <p class="note" data-i18n="paper.note">共同作者。上面的 CPU 加速项目获评北京市级大创，这篇是项目论文。</p>
+        </article>
+      </section>
+
+      <section id="education" class="block">
+        <h2 data-i18n="edu.title">教育</h2>
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="edu1.school">北京交通大学</h3>
+            <time data-i18n="edu1.date">2025.09 — 2028.06（预计）</time>
+          </div>
+          <p class="meta" data-i18n="edu1.meta">国家卓越工程师学院 · 人工智能 · 专业型硕士</p>
+          <p data-i18n="edu1.body">加权平均分 87.88，专业前 10%。一等学业奖学金。</p>
+        </article>
+        <article class="entry">
+          <div class="entry-head">
+            <h3 data-i18n="edu2.school">北京交通大学</h3>
+            <time data-i18n="edu2.date">2021.09 — 2025.06</time>
+          </div>
+          <p class="meta" data-i18n="edu2.meta">计算机科学与技术学院 · 计算机科学与技术 · 工学学士</p>
+          <p data-i18n="edu2.body">加权平均分 87.1，专业前 20%。蓝桥杯省赛 A 组二等奖、三等奖，校程序设计竞赛二等奖。</p>
+        </article>
+      </section>
+
+      <footer>
+        <p data-i18n="footer">更新于 2026 年 10 月</p>
+      </footer>
+    </main>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

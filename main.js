@@ -1,70 +1,36 @@
 const en = {
   skip: "Skip to content",
-  eyebrow: "Beijing Jiaotong University · year 2",
   name: "Deyang Wang",
-  role: "M.Eng. in Artificial Intelligence",
+  hello: "Hello, I'm Deyang Wang",
+  role1: "Beijing Jiaotong University · M.Eng. in Artificial Intelligence, year 2",
+  role2: "Cross-modal perception across visible light, infrared, and synthetic aperture radar",
   sensorLabel: "Three sensors",
+  langLabel: "Language",
   "band.rgb": "Visible",
   "band.ir": "Infrared",
   "band.sar": "SAR",
   "lede.rgb": "Visible light is for seeing the target: traffic lights, a railway corridor, an intersection in daylight. Infrared and radar take over when it fails.",
   "lede.ir": "At night and in smoke, visible light goes first. Infrared reads a temperature difference. The current project uses it together with visible light.",
   "lede.sar": "Synthetic aperture radar does not need light. It is a third measurement, not a filter on the same picture.",
-  langLabel: "Language",
-  tocLabel: "On this page",
-  "nav.now": "Now",
-  "nav.experience": "Experience",
-  "nav.projects": "Projects",
-  "nav.paper": "Paper",
-  "nav.education": "Education",
-  "now.title": "Now",
-  "now.body": "Fall 2026, second year of the master's. The project is cross-modal perception: visible light, infrared, and synthetic aperture radar. I fine-tune Qwen3-VL, then run GRPO. The reward looks at box IoU and whether the label is correct. The visible–infrared instructions come from M3FD and KAIST. Those sets do not include radar.",
-  "exp.title": "Experience",
-  "job1.org": "Neolix",
-  "job1.date": "2026.02 — 2026.07",
-  "job1.role": "Data and algorithms intern",
-  "job1.b1": "Ran the traffic-light detection data path: screening, labeling handoff, pre-labeling, visualization, and delivery, including bus lights, intersections, and U-turns.",
-  "job1.b2": "Retrained the YOLO detector and trained a ResNet classifier across day and night, weather, and lane type.",
-  "job1.b3": "Mined samples such as bus lights, red-light running, and overhead wires. Maintained the Docker images and post-processing scripts and connected them to the data platform.",
-  "job2.org": "北京普测时空科技有限公司",
-  "job2.date": "2025.04 — 2025.07",
-  "job2.role": "LLM agent intern",
-  "job2.b1": "Built Coze agents for career advice, public-opinion briefs, and resume scoring, and wired intent, retrieval, and generation into workflows.",
-  "job2.b2": "Transcribed meeting audio with Whisper and turned it into summaries and action items with Qwen2-7B-Instruct.",
-  "proj.title": "Projects",
-  "p1.title": "Cross-modal perception model",
-  "p1.date": "2025.10 — present",
-  "p1.meta": "Research",
-  "p1.body": "For night and smoke, where visible light fails, I treat RGB, infrared, and synthetic aperture radar as complementary measurements. The base model is Qwen3-VL, trained with supervised fine-tuning. M3FD and KAIST supply visible–infrared instructions. Post-training uses GRPO, with rewards for box IoU and label correctness.",
-  "p2.title": "Text-to-SQL fine-tuning",
-  "p2.date": "2025.09 — 2025.12",
-  "p2.meta": "Course project",
-  "p2.body": "Cleaned Spider, BIRD, WikiSQL, and DuSQL, then fine-tuned Qwen3-4B-Instruct with ms-swift and DoRA. Exact match on BIRD moved from 1.56% to 16.32%. A Streamlit demo loads a database, generates SQL, and runs it.",
-  "p3.title": "Railway corridor monitoring",
-  "p3.date": "2024.12 — 2025.06",
-  "p3.meta": "Undergraduate thesis",
-  "p3.body": "Reimplemented MVX-Net: VGG16 for images, VoxelNet for lidar, then alignment into voxels. Django serves the API. Three.js shows the point cloud and detection boxes.",
-  "p4.title": "Batched CNN inference on CPUs",
-  "p4.date": "2023.04 — 2024.05",
-  "p4.meta": "Beijing municipal innovation program",
-  "p4.body": "Worked on the BDLO data layout and on folding the reorder into batch norm and pooling. Ablations in LibTorch and Eigen reached 1.28×. I am a co-author on the paper below.",
-  "p5.title": "Inference on an in-vehicle cDSP",
-  "p5.date": "2023.02 — 2024.05",
-  "p5.meta": "NIO university collaboration",
-  "p5.body": "Deployed HiFi-GAN to the cDSP on a Snapdragon chip with MACE, using int8 quantization and operator fusion. The Transformer variant was about 1.5× faster.",
-  "paper.title": "Paper",
-  "paper.note": "Co-author. The CPU project above was a Beijing municipal innovation project; this is its paper.",
-  "edu.title": "Education",
-  "edu1.school": "Beijing Jiaotong University",
-  "edu1.date": "2025.09 — 2028.06 (expected)",
-  "edu1.meta": "National Elite Engineering College · Artificial Intelligence · professional master's",
-  "edu1.body": "Weighted average 87.88, top 10% of the program. First-class academic scholarship.",
-  "edu2.school": "Beijing Jiaotong University",
-  "edu2.date": "2021.09 — 2025.06",
-  "edu2.meta": "School of Computer Science · Computer Science and Technology · B.Eng.",
-  "edu2.body": "Weighted average 87.1, top 20% of the program. Lanqiao Cup provincial A-group second and third prizes, and second prize in the university programming contest.",
+  skills: "Skills",
+  methods: "Methods",
+  projects: "Projects",
+  p1: "Cross-modal perception model",
+  p2: "Text-to-SQL fine-tuning",
+  p3: "Railway corridor monitoring",
+  p4: "Batched CNN inference on CPUs",
+  p5: "Inference on an in-vehicle cDSP",
+  paper: "Paper",
+  "paper.note": "Co-author. The batched CNN inference project was a Beijing municipal innovation project; this is its paper.",
+  contact: "Contact",
   footer: "Updated October 2026",
-  title: "Deyang Wang"
+  title: "Deyang Wang",
+  description: "Deyang Wang, M.Eng. student in artificial intelligence at Beijing Jiaotong University. Cross-modal perception across visible light, infrared, and synthetic aperture radar."
+};
+
+const themeLabel = {
+  zh: { toLight: "切换到浅色", toDark: "切换到深色" },
+  en: { toLight: "Switch to light", toDark: "Switch to dark" }
 };
 
 const nodes = () => document.querySelectorAll("[data-i18n], [data-i18n-aria]");
@@ -79,6 +45,27 @@ function remember() {
     const key = keyOf(el);
     zh.set(key, el.dataset.i18nAria ? el.getAttribute("aria-label") : el.textContent);
   });
+  zh.set("description", document.querySelector('meta[name="description"]').getAttribute("content"));
+}
+
+function currentLang() {
+  return document.documentElement.lang === "en" ? "en" : "zh";
+}
+
+function paintTheme(theme) {
+  const dark = theme !== "light";
+  const next = dark ? "dark" : "light";
+  document.documentElement.dataset.theme = next;
+  const btn = document.querySelector("[data-theme-btn]");
+  const copy = themeLabel[currentLang()];
+  btn.setAttribute("aria-pressed", dark ? "true" : "false");
+  btn.setAttribute("aria-label", dark ? copy.toLight : copy.toDark);
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", dark ? "#101413" : "#eef3f0");
+  try {
+    localStorage.setItem("theme", next);
+  } catch (err) {
+    /* private mode */
+  }
 }
 
 function apply(lang) {
@@ -92,9 +79,14 @@ function apply(lang) {
   });
   document.documentElement.lang = useEn ? "en" : "zh-CN";
   document.title = useEn ? en.title : zh.get("name");
+  document.querySelector('meta[name="description"]').setAttribute(
+    "content",
+    useEn ? en.description : zh.get("description")
+  );
   document.querySelectorAll("[data-lang]").forEach((btn) => {
     btn.setAttribute("aria-pressed", btn.dataset.lang === (useEn ? "en" : "zh") ? "true" : "false");
   });
+  paintTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
   try {
     localStorage.setItem("lang", useEn ? "en" : "zh");
   } catch (err) {
@@ -103,7 +95,7 @@ function apply(lang) {
 }
 
 function setBand(band) {
-  document.body.dataset.band = band;
+  document.documentElement.dataset.band = band;
   document.querySelectorAll("[data-band-panel]").forEach((panel) => {
     panel.hidden = panel.dataset.bandPanel !== band;
   });
@@ -114,42 +106,30 @@ function setBand(band) {
 
 remember();
 
-let initial = "zh";
+let initialLang = "zh";
+let initialTheme = "dark";
 try {
-  if (localStorage.getItem("lang") === "en") initial = "en";
+  if (localStorage.getItem("lang") === "en") initialLang = "en";
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light" || savedTheme === "dark") initialTheme = savedTheme;
 } catch (err) {
-  initial = "zh";
+  initialLang = "zh";
+  initialTheme = "dark";
 }
-apply(initial);
+
+document.documentElement.dataset.theme = initialTheme;
+apply(initialLang);
 setBand("rgb");
 
 document.querySelectorAll("[data-lang]").forEach((btn) => {
   btn.addEventListener("click", () => apply(btn.dataset.lang));
 });
 
+document.querySelector("[data-theme-btn]").addEventListener("click", () => {
+  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  paintTheme(next);
+});
+
 document.querySelectorAll("[data-band-btn]").forEach((btn) => {
   btn.addEventListener("click", () => setBand(btn.dataset.bandBtn));
 });
-
-const tocLinks = [...document.querySelectorAll(".toc a")];
-const sections = tocLinks
-  .map((link) => document.querySelector(link.getAttribute("href")))
-  .filter(Boolean);
-
-if ("IntersectionObserver" in window && sections.length) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (!visible) return;
-      tocLinks.forEach((link) => {
-        const on = link.getAttribute("href") === `#${visible.target.id}`;
-        if (on) link.setAttribute("aria-current", "true");
-        else link.removeAttribute("aria-current");
-      });
-    },
-    { rootMargin: "-20% 0px -55% 0px", threshold: [0.15, 0.4] }
-  );
-  sections.forEach((section) => observer.observe(section));
-}

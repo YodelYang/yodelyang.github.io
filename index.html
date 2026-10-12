@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark" data-band="rgb">
+<html lang="zh-CN" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>王德阳</title>
   <meta name="description" content="王德阳，北京交通大学人工智能专业硕士。可见光、红外与合成孔径雷达上的跨模态感知。">
-  <meta name="theme-color" content="#101413">
+  <meta name="theme-color" content="#050505">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&family=Noto+Sans+SC:wght@400;500;700&family=Roboto+Condensed&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     try {
@@ -19,104 +19,81 @@
   </script>
 </head>
 <body>
+  <div class="field" aria-hidden="true"><canvas id="dots"></canvas></div>
   <a class="skip" href="#content" data-i18n="skip">跳到正文</a>
-  <div class="page">
-    <header class="bar">
-      <a class="mark" href="#content" data-i18n-aria="name" aria-label="王德阳">dy</a>
-      <div class="bar-tools">
-        <div class="lang" role="group" data-i18n-aria="langLabel" aria-label="语言">
-          <button type="button" data-lang="zh" aria-pressed="true">中文</button>
-          <button type="button" data-lang="en" aria-pressed="false">EN</button>
-        </div>
-        <button type="button" class="theme" data-theme-btn aria-pressed="true" aria-label="切换到浅色">
-          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M18.9 5.1l-1.6 1.6M6.7 17.3l-1.6 1.6"></path>
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M15.5 3.2a8.2 8.2 0 1 0 5.3 13.2A7.2 7.2 0 0 1 15.5 3.2z"></path>
-          </svg>
-        </button>
+  <header class="bar">
+    <a class="mark" href="#content" data-i18n-aria="name" aria-label="王德阳">
+      <svg viewBox="0 0 84 60" fill="none">
+        <path d="M30 18 C16 12 8 20 12 28 C16 36 26 36 30 32"/>
+        <path d="M30 4 L30 36"/>
+        <path d="M46 16 C48 24 52 32 56 32"/>
+        <path d="M68 16 C64 24 60 30 56 32 C54 42 48 50 42 54"/>
+      </svg>
+    </a>
+    <div class="bar-tools">
+      <div class="lang" role="group" data-i18n-aria="langLabel" aria-label="语言">
+        <button type="button" data-lang="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
       </div>
-    </header>
-
-    <main id="content">
-      <h1 data-i18n="name">王德阳</h1>
+      <button type="button" class="theme" data-theme-btn aria-pressed="true" aria-label="切换到浅色">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M18.9 5.1l-1.6 1.6M6.7 17.3l-1.6 1.6"></path>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15.5 3.2a8.2 8.2 0 1 0 5.3 13.2A7.2 7.2 0 0 1 15.5 3.2z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+  <main id="content" class="prose">
+    <h1 class="enter" data-i18n="name">王德阳</h1>
+    <div class="enter enter-late">
       <p class="hello" data-i18n="hello">你好，我是王德阳</p>
-      <p class="role" data-i18n="role1">北京交通大学 · 人工智能专硕，研二</p>
-      <p class="role" data-i18n="role2">做可见光、红外与合成孔径雷达上的跨模态感知</p>
-
-      <div class="sensor" role="group" data-i18n-aria="sensorLabel" aria-label="三种传感器">
-        <button type="button" data-band-btn="rgb" aria-pressed="true">
-          <span class="swatch" aria-hidden="true"></span>
-          <span data-i18n="band.rgb">可见光</span>
-        </button>
-        <button type="button" data-band-btn="ir" aria-pressed="false">
-          <span class="swatch" aria-hidden="true"></span>
-          <span data-i18n="band.ir">红外</span>
-        </button>
-        <button type="button" data-band-btn="sar" aria-pressed="false">
-          <span class="swatch" aria-hidden="true"></span>
-          <span data-i18n="band.sar">雷达</span>
-        </button>
-      </div>
-      <p class="lede" data-band-panel="rgb" data-i18n="lede.rgb">可见光负责看清目标：交通灯、铁路沿线、白天的路口。它失效的时候，才轮到红外和雷达。</p>
-      <p class="lede" data-band-panel="ir" data-i18n="lede.ir" hidden>夜间和烟雾里，可见光先看不见。红外看的是温度差。现在的课题用它和可见光一起做跨模态感知。</p>
-      <p class="lede" data-band-panel="sar" data-i18n="lede.sar" hidden>合成孔径雷达不靠光照。它和可见光、红外是三路不同的测量，不是同一张图换个滤镜。</p>
-
-      <section aria-labelledby="skills-label">
-        <h2 id="skills-label" data-i18n="skills">技能</h2>
-        <ul class="chips">
-          <li>Python</li>
-          <li>C/C++</li>
-          <li>PyTorch</li>
-          <li>Linux</li>
-          <li>Docker</li>
-          <li>ONNX</li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="methods-label">
-        <h2 id="methods-label" data-i18n="methods">方法</h2>
-        <ul class="chips">
-          <li>SFT</li>
-          <li>GRPO</li>
-          <li>DoRA</li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="projects-label">
-        <h2 id="projects-label" data-i18n="projects">项目</h2>
-        <ul class="titles">
-          <li data-i18n="p1">跨模态感知大模型</li>
-          <li data-i18n="p2">Text-to-SQL 微调</li>
-          <li data-i18n="p3">铁路沿线安全态势感知</li>
-          <li data-i18n="p4">CPU 上的 CNN 批量推理加速</li>
-          <li data-i18n="p5">车载 cDSP 上的推理部署</li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="paper-label">
-        <h2 id="paper-label" data-i18n="paper">论文</h2>
-        <p class="paper-title">Batched data layout optimization for Im2col-based convolutions on CPUs</p>
-        <p class="paper-link"><a class="arrow" href="https://doi.org/10.1007/s11227-025-07706-9">doi.org/10.1007/s11227-025-07706-9</a></p>
-        <p class="note" data-i18n="paper.note">共同作者。CPU 上的批量推理加速获评北京市级大创，这篇是项目论文。</p>
-      </section>
-
-      <section aria-labelledby="contact-label">
-        <h2 id="contact-label" data-i18n="contact">联系方式</h2>
-        <ul class="contact">
-          <li><a href="mailto:deyangwang@bjtu.edu.cn">deyangwang@bjtu.edu.cn</a></li>
-          <li><a href="https://github.com/YodelYang">GitHub</a></li>
-          <li><a href="https://orcid.org/0009-0004-4159-4885">ORCID</a></li>
-        </ul>
-      </section>
-
+      <p data-i18n="role1">北京交通大学 · 人工智能专硕 / 研二</p>
+      <p data-i18n="role2">可见光、红外与合成孔径雷达</p>
+      <p class="chip-row">
+        <span data-i18n="skills">技能</span>
+        <a class="chip" href="https://www.python.org/" target="_blank" rel="noopener"><img alt="" src="https://cdn.simpleicons.org/python/3776AB" width="18" height="18">Python</a>
+        <a class="chip" href="https://isocpp.org/" target="_blank" rel="noopener"><img alt="" src="https://cdn.simpleicons.org/cplusplus/00599C" width="18" height="18">C/C++</a>
+        <a class="chip" href="https://pytorch.org/" target="_blank" rel="noopener"><img alt="" src="https://cdn.simpleicons.org/pytorch/EE4C2C" width="18" height="18">PyTorch</a>
+        <a class="chip" href="https://www.linux.org/" target="_blank" rel="noopener"><img alt="" src="https://cdn.simpleicons.org/linux/FCC624" width="18" height="18">Linux</a>
+        <a class="chip" href="https://www.docker.com/" target="_blank" rel="noopener"><img alt="" src="https://cdn.simpleicons.org/docker/2496ED" width="18" height="18">Docker</a>
+        <a class="chip" href="https://onnx.ai/" target="_blank" rel="noopener">ONNX</a>
+      </p>
+      <p class="chip-row">
+        <span data-i18n="methods">方法</span>
+        <span class="chip">SFT</span>
+        <span class="chip">GRPO</span>
+        <span class="chip">DoRA</span>
+      </p>
+      <p data-i18n="links">相关链接</p>
+      <p class="tight">
+        <a class="arrow" data-i18n="paper" href="https://doi.org/10.1007/s11227-025-07706-9">论文</a>
+      </p>
+      <p class="note" data-i18n="paper.note">共同作者。CPU 上的批量推理加速获评北京市级大创，这篇是项目论文。</p>
+      <p data-i18n="projects">项目</p>
+      <p class="tight" data-i18n="projectLine">跨模态感知大模型 · Text-to-SQL 微调 · 铁路沿线安全态势感知 · CPU 上的 CNN 批量推理加速 · 车载 cDSP 上的推理部署</p>
+      <p data-i18n="contact">联系方式</p>
+      <p class="tight contact">
+        <a href="https://github.com/YodelYang">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.7 7.7 0 0 1 8 4.77c.68.003 1.36.092 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a href="mailto:deyangwang@bjtu.edu.cn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+          deyangwang@bjtu.edu.cn
+        </a>
+        <a href="https://orcid.org/0009-0004-4159-4885">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="8.2" r="1.15" fill="currentColor"/><path d="M12 11.2v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          ORCID
+        </a>
+      </p>
       <footer>
         <p data-i18n="footer">更新于 2026 年 10 月</p>
       </footer>
-    </main>
-  </div>
+    </div>
+  </main>
   <script src="main.js"></script>
 </body>
 </html>

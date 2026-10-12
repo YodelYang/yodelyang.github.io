@@ -2,26 +2,16 @@ const en = {
   skip: "Skip to content",
   name: "Deyang Wang",
   hello: "Hello, I'm Deyang Wang",
-  role1: "Beijing Jiaotong University · M.Eng. in Artificial Intelligence, year 2",
-  role2: "Cross-modal perception across visible light, infrared, and synthetic aperture radar",
-  sensorLabel: "Three sensors",
+  role1: "Beijing Jiaotong University · M.Eng. in Artificial Intelligence / year 2",
+  role2: "Visible light, infrared, and synthetic aperture radar",
   langLabel: "Language",
-  "band.rgb": "Visible",
-  "band.ir": "Infrared",
-  "band.sar": "SAR",
-  "lede.rgb": "Visible light is for seeing the target: traffic lights, a railway corridor, an intersection in daylight. Infrared and radar take over when it fails.",
-  "lede.ir": "At night and in smoke, visible light goes first. Infrared reads a temperature difference. The current project uses it together with visible light.",
-  "lede.sar": "Synthetic aperture radar does not need light. It is a third measurement, not a filter on the same picture.",
   skills: "Skills",
   methods: "Methods",
-  projects: "Projects",
-  p1: "Cross-modal perception model",
-  p2: "Text-to-SQL fine-tuning",
-  p3: "Railway corridor monitoring",
-  p4: "Batched CNN inference on CPUs",
-  p5: "Inference on an in-vehicle cDSP",
+  links: "Links",
   paper: "Paper",
   "paper.note": "Co-author. The batched CNN inference project was a Beijing municipal innovation project; this is its paper.",
+  projects: "Projects",
+  projectLine: "Cross-modal perception model · Text-to-SQL fine-tuning · Railway corridor monitoring · Batched CNN inference on CPUs · Inference on an in-vehicle cDSP",
   contact: "Contact",
   footer: "Updated October 2026",
   title: "Deyang Wang",
@@ -60,7 +50,7 @@ function paintTheme(theme) {
   const copy = themeLabel[currentLang()];
   btn.setAttribute("aria-pressed", dark ? "true" : "false");
   btn.setAttribute("aria-label", dark ? copy.toLight : copy.toDark);
-  document.querySelector('meta[name="theme-color"]').setAttribute("content", dark ? "#101413" : "#eef3f0");
+  document.querySelector('meta[name="theme-color"]').setAttribute("content", dark ? "#050505" : "#ffffff");
   try {
     localStorage.setItem("theme", next);
   } catch (err) {
@@ -94,15 +84,141 @@ function apply(lang) {
   }
 }
 
-function setBand(band) {
-  document.documentElement.dataset.band = band;
-  document.querySelectorAll("[data-band-panel]").forEach((panel) => {
-    panel.hidden = panel.dataset.bandPanel !== band;
-  });
-  document.querySelectorAll("[data-band-btn]").forEach((btn) => {
-    btn.setAttribute("aria-pressed", btn.dataset.bandBtn === band ? "true" : "false");
-  });
+const fade = (t) => t * t * t * (t * (t * 6 - 15) + 10);
+const lerp = (a, b, t) => a + t * (b - a);
+const grad3 = [
+  [1, 1, 0], [-1, 1, 0], [1, -1, 0], [-1, -1, 0],
+  [1, 0, 1], [-1, 0, 1], [1, 0, -1], [-1, 0, -1],
+  [0, 1, 1], [0, -1, 1], [0, 1, -1], [0, -1, -1]
+];
+
+function createNoise(seed) {
+  let s = seed >>> 0 || 1;
+  const rand = () => {
+    s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
+    return s;
+  };
+  const source = new Uint8Array(256);
+  for (let i = 0; i < 256; i++) source[i] = i;
+  for (let i = 255; i > 0; i--) {
+    const j = rand() % (i + 1);
+    const tmp = source[i];
+    source[i] = source[j];
+    source[j] = tmp;
+  }
+  const perm = new Uint8Array(512);
+  for (let i = 0; i < 512; i++) perm[i] = source[i & 255];
+  const dot = (hash, x, y, z) => {
+    const g = grad3[hash % 12];
+    return g[0] * x + g[1] * y + g[2] * z;
+  };
+  return function noise(x, y, z) {
+    const X = Math.floor(x) & 255;
+    const Y = Math.floor(y) & 255;
+    const Z = Math.floor(z) & 255;
+    const xf = x - Math.floor(x);
+    const yf = y - Math.floor(y);
+    const zf = z - Math.floor(z);
+    const u = fade(xf);
+    const v = fade(yf);
+    const w = fade(zf);
+    const A = perm[X] + Y;
+    const AA = perm[A] + Z;
+    const AB = perm[A + 1] + Z;
+    const B = perm[X + 1] + Y;
+    const BA = perm[B] + Z;
+    const BB = perm[B + 1] + Z;
+    const n = lerp(
+      lerp(
+        lerp(dot(perm[AA], xf, yf, zf), dot(perm[BA], xf - 1, yf, zf), u),
+        lerp(dot(perm[AB], xf, yf - 1, zf), dot(perm[BB], xf - 1, yf - 1, zf), u),
+        v
+      ),
+      lerp(
+        lerp(dot(perm[AA + 1], xf, yf, zf - 1), dot(perm[BA + 1], xf - 1, yf, zf - 1), u),
+        lerp(dot(perm[AB + 1], xf, yf - 1, zf - 1), dot(perm[BB + 1], xf - 1, yf - 1, zf - 1), u),
+        v
+      ),
+      w
+    );
+    return (n + 1) / 2;
+  };
 }
+
+const canvas = document.getElementById("dots");
+const ctx = canvas.getContext("2d");
+const noise = createNoise(Date.now());
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let dots = [];
+let viewW = 0;
+let viewH = 0;
+let lastFrame = 0;
+let running = false;
+
+function spacing() {
+  return Math.max(18, Math.min(Math.sqrt((viewW * viewH) / 2000), 45));
+}
+
+function placeDots() {
+  const step = spacing();
+  dots = [];
+  for (let x = -step / 2; x < viewW + step; x += step) {
+    for (let y = -step / 2; y < viewH + step; y += step) {
+      dots.push({ x, y, opacity: Math.random() * 0.5 + 0.5 });
+      if (dots.length >= 2600) return;
+    }
+  }
+}
+
+function resizeField() {
+  viewW = window.innerWidth;
+  viewH = window.innerHeight;
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.round(viewW * ratio);
+  canvas.height = Math.round(viewH * ratio);
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  placeDots();
+}
+
+function paintDots(time) {
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, viewW, viewH);
+  const t = time / 10000;
+  const scroll = window.scrollY;
+  for (const dot of dots) {
+    const angle = (noise(dot.x / 200, dot.y / 200, t) - 0.5) * Math.PI * 4;
+    const radius = (noise(dot.x / 200, dot.y / 200, t * 2) + 0.5) * 10;
+    const x = dot.x + Math.cos(angle) * radius;
+    const y = dot.y + Math.sin(angle) * radius - scroll;
+    const alpha = (Math.abs(Math.cos(angle)) * 0.8 + 0.2) * dot.opacity;
+    ctx.fillStyle = `rgba(200,200,200,${alpha})`;
+    ctx.beginPath();
+    ctx.arc(x, y, 0.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function frame(time) {
+  if (!running) return;
+  if (time - lastFrame >= 1000 / 12) {
+    lastFrame = time;
+    paintDots(time);
+  }
+  requestAnimationFrame(frame);
+}
+
+resizeField();
+if (reduceMotion) {
+  paintDots(0);
+} else {
+  running = true;
+  requestAnimationFrame(frame);
+}
+
+window.addEventListener("resize", () => {
+  resizeField();
+  if (reduceMotion) paintDots(0);
+});
 
 remember();
 
@@ -119,7 +235,6 @@ try {
 
 document.documentElement.dataset.theme = initialTheme;
 apply(initialLang);
-setBand("rgb");
 
 document.querySelectorAll("[data-lang]").forEach((btn) => {
   btn.addEventListener("click", () => apply(btn.dataset.lang));
@@ -128,8 +243,4 @@ document.querySelectorAll("[data-lang]").forEach((btn) => {
 document.querySelector("[data-theme-btn]").addEventListener("click", () => {
   const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
   paintTheme(next);
-});
-
-document.querySelectorAll("[data-band-btn]").forEach((btn) => {
-  btn.addEventListener("click", () => setBand(btn.dataset.bandBtn));
 });

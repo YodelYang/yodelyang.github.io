@@ -90,8 +90,8 @@ a { color: inherit; }
 }
 
 .mark {
-  width: 3rem;
-  height: 3rem;
+  height: 4.25rem;
+  aspect-ratio: 642.27 / 388;
   color: var(--fg-deep);
   display: block;
   flex: none;
@@ -100,13 +100,7 @@ a { color: inherit; }
 .mark svg {
   width: 100%;
   height: 100%;
-}
-
-.mark path {
-  stroke: currentColor;
-  stroke-width: 2.3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  display: block;
 }
 
 .bar-tools {

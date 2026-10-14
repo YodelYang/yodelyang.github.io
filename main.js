@@ -51,6 +51,8 @@ function paintTheme(theme) {
   btn.setAttribute("aria-pressed", dark ? "true" : "false");
   btn.setAttribute("aria-label", dark ? copy.toLight : copy.toDark);
   document.querySelector('meta[name="theme-color"]').setAttribute("content", dark ? "#050505" : "#ffffff");
+  const icon = document.querySelector('link[rel="icon"]');
+  if (icon) icon.href = dark ? "images/logo-dark.svg" : "images/logo-light.svg";
   try {
     localStorage.setItem("theme", next);
   } catch (err) {

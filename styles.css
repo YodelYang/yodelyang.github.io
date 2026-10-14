@@ -90,7 +90,7 @@ a { color: inherit; }
 }
 
 .mark {
-  height: 4.25rem;
+  height: 3.5rem;
   aspect-ratio: 243 / 136;
   color: var(--fg-deep);
   display: block;

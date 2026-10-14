@@ -91,7 +91,7 @@ a { color: inherit; }
 
 .mark {
   height: 4.25rem;
-  aspect-ratio: 324 / 168;
+  aspect-ratio: 243 / 136;
   color: var(--fg-deep);
   display: block;
   flex: none;

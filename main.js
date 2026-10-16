@@ -4,7 +4,6 @@ const en = {
   hello: "Hello, I'm Deyang Wang",
   role1: "Beijing Jiaotong University · M.Eng. in Artificial Intelligence / year 2",
   role2: "Visible light, infrared, and synthetic aperture radar",
-  langLabel: "Language",
   skills: "Skills",
   methods: "Methods",
   links: "Links",
@@ -21,6 +20,11 @@ const en = {
 const themeLabel = {
   zh: { toLight: "切换到浅色", toDark: "切换到深色" },
   en: { toLight: "Switch to light", toDark: "Switch to dark" }
+};
+
+const langLabel = {
+  zh: "切换到英文",
+  en: "Switch to Chinese"
 };
 
 const nodes = () => document.querySelectorAll("[data-i18n], [data-i18n-aria]");
@@ -75,9 +79,9 @@ function apply(lang) {
     "content",
     useEn ? en.description : zh.get("description")
   );
-  document.querySelectorAll("[data-lang]").forEach((btn) => {
-    btn.setAttribute("aria-pressed", btn.dataset.lang === (useEn ? "en" : "zh") ? "true" : "false");
-  });
+  const langBtn = document.querySelector("[data-lang-btn]");
+  langBtn.setAttribute("aria-pressed", useEn ? "true" : "false");
+  langBtn.setAttribute("aria-label", useEn ? langLabel.en : langLabel.zh);
   paintTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
   try {
     localStorage.setItem("lang", useEn ? "en" : "zh");
@@ -238,8 +242,8 @@ try {
 document.documentElement.dataset.theme = initialTheme;
 apply(initialLang);
 
-document.querySelectorAll("[data-lang]").forEach((btn) => {
-  btn.addEventListener("click", () => apply(btn.dataset.lang));
+document.querySelector("[data-lang-btn]").addEventListener("click", () => {
+  apply(currentLang() === "en" ? "zh" : "en");
 });
 
 document.querySelector("[data-theme-btn]").addEventListener("click", () => {

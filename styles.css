@@ -111,18 +111,7 @@ a { color: inherit; }
   gap: 0.85rem;
 }
 
-.lang {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.lang button {
-  color: var(--fg);
-  padding: 0.35rem 0.05rem;
-}
-
-.lang button[aria-pressed="true"] { color: var(--fg-deep); }
-
+.lang,
 .theme {
   width: 2.5rem;
   height: 2.5rem;
@@ -130,6 +119,15 @@ a { color: inherit; }
   place-items: center;
   color: var(--fg);
 }
+
+.lang span {
+  grid-area: 1 / 1;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+html[lang="en"] .lang-zh,
+html:not([lang="en"]) .lang-en { visibility: hidden; }
 
 .theme svg {
   width: 1.25rem;
